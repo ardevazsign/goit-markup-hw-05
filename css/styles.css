@@ -1,5 +1,6 @@
 :root {
     --primary-color:#4D5AE5;
+--primary-with-alpha: rgba(77, 90, 229, 0.9);
     --primary-white: #fff;
     --background-font: #2E2F42;
     --hover-background: #0707f6;
@@ -9,6 +10,7 @@
     --Light-Slate: #8E8F99;
     --Grey: rgba(46, 47, 66, 0.70);
     --L-Grey: #2E2F42;
+    --Dairy: #FCFCFC;
 }
 body{
     margin: 0;
@@ -77,7 +79,17 @@ ul > li{
            .pages>li>a:focus,
 .active,.pages > li > a:hover{
     color: var(--primary-color);
-} 
+}
+.active::after{
+    background-color: var(--primary-color);
+    content: " ";
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 2px;
+    position: relative;
+    top: 40px;
+}
 .page-studio{
      width: 48px, auto;
      height: 24px, auto;
@@ -175,6 +187,55 @@ ul > li{
     border: none;
     letter-spacing: 0.64px;
     cursor: pointer;
+}
+
+.btn-modal{
+    border: 0;
+    display: block;
+    margin-left: auto;
+    background-color: var(--Dairy);
+}
+.btn-modal svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    cursor: pointer;
+    color: var(--L-Grey);
+    background-color: var(--CORNFLOW);
+    border: 1px solid var(--CORNFLOW);
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2),
+                0 1px 3px 0 rgba(0, 0, 0, 0.12),
+                0 1px 1px 0 rgba(0, 0, 0, 0.14);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}       
+.backdrop{
+    width: 100%;
+    height: 100%;
+    background-color:  rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal{
+    padding: 24px;
+    background-color: var(--Dairy);
+    width: 408px;
+    height: 584px;
+    border-radius: 5px;
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2)
+                0 1px 3px 0 rgba(0, 0, 0, 0.12),
+                0 1px 1px 0 rgba(0, 0, 0, 0.14);
+}
+.is-hidden{
+    pointer-events: none;
+    opacity: 0;
 }
 
 /* ------------------------- Section1 ------------------------ */
@@ -475,7 +536,7 @@ h3 {
 
 
      /* Overlay Slider */
-.card-1{
+.card{
     position: relative;
     width: 100%;   
 }
@@ -486,20 +547,20 @@ h3 {
 }
 .slider {
     position: absolute;
-    background-color:var(--primary-color);
+    background-color: var(--primary-with-alpha);
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 0px;
     overflow: hidden;
-    transition:  0.5s ease;
-    -webkit-transition: 0.5s ease;
+    transition:  0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* -webkit-transition: 0.5s ease;
     -moz-transition: 0.5s ease;
     -ms-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
+    -o-transition: 0.5s ease; */
 }
-.card-1:hover .slider{
+.card:hover .slider{
     height: 100%;
 }
 .content{
